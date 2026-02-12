@@ -1,4 +1,4 @@
-package edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.cerveza_list
+package edu.ucne.eddian_vasquez_ap2_p1.presentation.cerveza_list
 
 sealed interface CervezaListUiEvent {
     data class OnFilterChange(val filter: String) : CervezaListUiEvent

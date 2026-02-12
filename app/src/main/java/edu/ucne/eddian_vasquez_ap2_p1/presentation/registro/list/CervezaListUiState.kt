@@ -1,6 +1,6 @@
-package edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.cerveza_list
+package edu.ucne.eddian_vasquez_ap2_p1.presentation.cerveza_list
 
-import edu.ucne.Eddian_Vasquez_Ap2_P1.domain.Cerveza
+import edu.ucne.eddian_vasquez_ap2_p1.domain.registro.model.Cerveza
 
 
 data class CervezaListUiState(

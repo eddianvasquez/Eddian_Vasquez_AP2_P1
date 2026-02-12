@@ -1,4 +1,4 @@
-package edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.cerveza_edit
+package edu.ucne.eddian_vasquez_ap2_p1.presentation.cerveza_edit
 
 sealed interface CervezaEditEvent {
     data class NombreChanged(val v: String) : CervezaEditEvent
