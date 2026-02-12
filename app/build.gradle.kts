@@ -5,17 +5,17 @@ plugins {
 
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
-
-    // Mantenemos esto como funcionó
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.10"
 }
 
 android {
-    namespace = "edu.ucne.pruebin"
+
+    namespace = "edu.ucne.eddian_vasquez_ap2_p1"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "edu.ucne.pruebin"
+
+        applicationId = "edu.ucne.eddian_vasquez_ap2_p1"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -59,11 +59,11 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
 
-    // Navegación
+
     implementation("androidx.navigation:navigation-compose:2.8.5")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
-    // Room
+
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
@@ -71,20 +71,18 @@ dependencies {
 
     implementation("androidx.compose.material:material-icons-extended:1.6.8")
 
-    // --- CORRECCIÓN HILT ---
-    // Las versiones deben coincidir con la del plugin en el build.gradle raíz (2.57.1)
+
     implementation("com.google.dagger:hilt-android:2.57.1")
     ksp("com.google.dagger:hilt-android-compiler:2.57.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-    // -----------------------
 
-    // Retrofit
+
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
-    // Testing
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
