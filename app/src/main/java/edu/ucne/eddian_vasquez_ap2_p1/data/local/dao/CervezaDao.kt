@@ -1,9 +1,9 @@
-package edu.ucne.Eddian_Vasquez_Ap2_P1.data.local.dao
+package edu.ucne.eddian_vasquez_ap2_p1.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
-import edu.ucne.Eddian_Vasquez_Ap2_P1.data.local.entitiespackage.CervezaEntity
+import edu.ucne.eddian_vasquez_ap2_p1.data.local.entitiespackage.CervezaEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

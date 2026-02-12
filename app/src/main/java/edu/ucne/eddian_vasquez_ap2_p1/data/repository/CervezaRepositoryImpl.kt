@@ -1,12 +1,13 @@
 package edu.ucne.eddian_vasquez_ap2_p1.data.repository
 
-import edu.ucne.Eddian_Vasquez_Ap2_p1.domain.repository.CervezaRepository
-import edu.ucne.Eddian_Vasquez_Ap2_P1.data.local.dao.CervezaDao
-import edu.ucne.Eddian_Vasquez_Ap2_P1.data.local.entitiespackage.CervezaEntity
-import edu.ucne.Eddian_Vasquez_Ap2_P1.domain.Cerveza
+import edu.ucne.eddian_vasquez_ap2_p1.data.local.dao.CervezaDao
+import edu.ucne.eddian_vasquez_ap2_p1.data.local.entitiespackage.CervezaEntity
+import edu.ucne.eddian_vasquez_ap2_p1.domain.registro.model.Cerveza
+import edu.ucne.eddian_vasquez_ap2_p1.domain.repository.CervezaRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import kotlin.collections.map
 
 class CervezaRepositoryImpl @Inject constructor(
     private val dao: CervezaDao
