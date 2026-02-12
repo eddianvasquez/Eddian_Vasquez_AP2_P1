@@ -1,20 +1,21 @@
-package edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.cerveza_edit
+package edu.ucne.eddian_vasquez_ap2_p1.presentation.registro.edit
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import edu.ucne.Eddian_Vasquez_Ap2_P1.presentation.cerveza_edit.CervezaEditEvent
-import edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.cerveza_edit.CervezaEditViewModel
+import edu.ucne.eddian_vasquez_ap2_p1.presentation.cerveza_edit.CervezaEditEvent
+import edu.ucne.eddian_vasquez_ap2_p1.presentation.cerveza_edit.CervezaEditState
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CervezaEditScreen(
     viewModel: CervezaEditViewModel = hiltViewModel(),
@@ -26,16 +27,37 @@ fun CervezaEditScreen(
         if (state.saved) goBack()
     }
 
+
+    CervezaEditBody(
+        state = state,
+        onEvent = viewModel::onEvent,
+        goBack = goBack
+    )
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CervezaEditBody(
+    state: CervezaEditState,
+    onEvent: (CervezaEditEvent) -> Unit,
+    goBack: () -> Unit
+) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text(if (state.id == null) "Nueva Cerveza" else "Editar Cerveza") },
                 navigationIcon = {
                     IconButton(onClick = goBack) {
-                        Icon(Icons.Default.ArrowBack, "Atrás")
+                        Icon(Icons.Default.ArrowBack, "Atras")
                     }
                 }
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = { onEvent(CervezaEditEvent.Save) }) {
+                Icon(Icons.Default.Save, contentDescription = "Guardar")
+            }
         }
     ) { padding ->
         Column(
@@ -46,47 +68,56 @@ fun CervezaEditScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
-            OutlinedTextField(
-                value = state.nombre,
-                onValueChange = { viewModel.onEvent(CervezaEditEvent.NombreChanged(it)) },
-                label = { Text("Nombre (Ej: Presidente)") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-
-            OutlinedTextField(
-                value = state.marca,
-                onValueChange = { viewModel.onEvent(CervezaEditEvent.MarcaChanged(it)) },
-                label = { Text("Marca/Origen") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-
-            OutlinedTextField(
-                value = state.puntuacion,
-                onValueChange = { viewModel.onEvent(CervezaEditEvent.PuntuacionChanged(it)) },
-                label = { Text("Puntuación (1-5)") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                modifier = Modifier.fillMaxWidth()
-            )
-
-
             if (state.errorMessage != null) {
                 Text(
-                    text = state.errorMessage,
-                    color = MaterialTheme.colorScheme.error
+                    text = state.errorMessage ?: "",
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.labelLarge
                 )
             }
 
-            Spacer(modifier = Modifier.weight(1f))
+            OutlinedTextField(
+                value = state.nombre,
+                onValueChange = { onEvent(CervezaEditEvent.NombreChanged(it)) },
+                label = { Text("Nombre") },
+                modifier = Modifier.fillMaxWidth(),
+                isError = state.errorMessage != null && state.nombre.isBlank()
+            )
 
+            OutlinedTextField(
+                value = state.marca,
+                onValueChange = { onEvent(CervezaEditEvent.MarcaChanged(it)) },
+                label = { Text("Marca") },
+                modifier = Modifier.fillMaxWidth(),
+                isError = state.errorMessage != null && state.marca.isBlank()
+            )
 
-            Button(
-                onClick = { viewModel.onEvent(CervezaEditEvent.Save) },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Guardar")
-            }
+            OutlinedTextField(
+                value = state.puntuacion,
+                onValueChange = { onEvent(CervezaEditEvent.PuntuacionChanged(it)) },
+                label = { Text("Puntuacion (1-5)") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                modifier = Modifier.fillMaxWidth(),
+                isError = state.errorMessage != null && (state.puntuacion.toIntOrNull() ?: 0) !in 1..5
+            )
         }
     }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun CervezaEditScreenPreview() {
+
+    val estadoFalso = CervezaEditState(
+        nombre = "Presidente",
+        marca = "Cerveceria",
+        puntuacion = "5"
+    )
+
+    CervezaEditBody(
+        state = estadoFalso,
+        onEvent = {},
+        goBack = {}
+    )
 }

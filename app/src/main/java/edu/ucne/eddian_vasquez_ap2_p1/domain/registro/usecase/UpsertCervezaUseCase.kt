@@ -1,9 +1,7 @@
-package edu.ucne.Eddian_Vasquez_Ap2_P1.domain.usecase.cerveza
+package edu.ucne.eddian_vasquez_ap2_p1.domain.registro.usecase
 
-import edu.ucne.Eddian_Vasquez_Ap2_P1.domain.Cerveza
-import edu.ucne.Eddian_Vasquez_Ap2_p1.domain.repository.CervezaRepository
-
-
+import edu.ucne.eddian_vasquez_ap2_p1.domain.registro.model.Cerveza
+import edu.ucne.eddian_vasquez_ap2_p1.domain.repository.CervezaRepository
 import javax.inject.Inject
 
 class UpsertCervezaUseCase @Inject constructor(
@@ -12,9 +10,19 @@ class UpsertCervezaUseCase @Inject constructor(
     suspend operator fun invoke(cerveza: Cerveza): Result<Unit> {
         return runCatching {
 
-            require(cerveza.nombre.isNotBlank()) { "El nombre es obligatorio " }
-            require(cerveza.marca.isNotBlank()) { "La marca es obligatoria 🏷" }
-            require(cerveza.puntuacion in 1..5) { "La puntuación debe ser entre 1 y 5 " }
+            if (cerveza.nombre.isBlank()) {
+                throw IllegalArgumentException("El nombre es obligatorio")
+            }
+
+
+            if (cerveza.marca.isBlank()) {
+                throw IllegalArgumentException("La marca es obligatoria")
+            }
+
+
+            if (cerveza.puntuacion < 1 || cerveza.puntuacion > 5) {
+                throw IllegalArgumentException("La puntuacion debe ser entre 1 y 5")
+            }
 
 
             repository.save(cerveza)

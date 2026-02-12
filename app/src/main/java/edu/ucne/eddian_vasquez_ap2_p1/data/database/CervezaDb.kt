@@ -1,9 +1,9 @@
-package edu.ucne.Eddian_Vasquez_Ap2_P1.data.database
+package edu.ucne.eddian_vasquez_ap2_p1.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import edu.ucne.Eddian_Vasquez_Ap2_P1.data.local.dao.CervezaDao
-import edu.ucne.Eddian_Vasquez_Ap2_P1.data.local.entitiespackage.CervezaEntity
+import edu.ucne.eddian_vasquez_ap2_p1.data.local.dao.CervezaDao
+import edu.ucne.eddian_vasquez_ap2_p1.data.local.entitiespackage.CervezaEntity
 
 
 @Database(

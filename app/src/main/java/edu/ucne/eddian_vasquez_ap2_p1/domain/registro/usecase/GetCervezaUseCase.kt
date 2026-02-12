@@ -1,8 +1,10 @@
-package edu.ucne.Eddian_Vasquez_Ap2_p1.domain.usecase.cerveza
+package edu.ucne.eddian_vasquez_ap2_p1.domain.registro.usecase
 
-import edu.ucne.Eddian_Vasquez_Ap2_p1.domain.repository.CervezaRepository
+import edu.ucne.eddian_vasquez_ap2_p1.domain.repository.CervezaRepository
 import javax.inject.Inject
 
-class GetCervezaUseCase @Inject constructor(private val repo: CervezaRepository) {
+class GetCervezaUseCase @Inject constructor(
+    private val repo: CervezaRepository
+) {
     suspend operator fun invoke(id: Int) = repo.getCerveza(id)
 }

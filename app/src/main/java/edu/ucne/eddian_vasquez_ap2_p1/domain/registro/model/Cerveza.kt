@@ -1,4 +1,4 @@
-package edu.ucne.Eddian_Vasquez_Ap2_p1.domain.model
+package edu.ucne.eddian_vasquez_ap2_p1.domain.registro.model
 
 data class Cerveza(
     val idCerveza: Int? = null,

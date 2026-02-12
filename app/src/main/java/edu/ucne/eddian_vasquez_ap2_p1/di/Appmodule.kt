@@ -1,4 +1,4 @@
-package edu.ucne.Eddian_Vasquez_Ap2_p1.di
+package edu.ucne.eddian_vasquez_ap2_p1.di
 
 import android.content.Context
 import androidx.room.Room
@@ -7,10 +7,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import edu.ucne.Eddian_Vasquez_Ap2_P1.data.database.CervezaDb
-import edu.ucne.Eddian_Vasquez_Ap2_p1.domain.repository.CervezaRepository
-import edu.ucne.Eddian_Vasquez_Ap2_P1.data.local.dao.CervezaDao
+import edu.ucne.eddian_vasquez_ap2_p1.data.database.CervezaDb
+import edu.ucne.eddian_vasquez_ap2_p1.data.local.dao.CervezaDao
 import edu.ucne.eddian_vasquez_ap2_p1.data.repository.CervezaRepositoryImpl
+import edu.ucne.eddian_vasquez_ap2_p1.domain.repository.CervezaRepository
 import javax.inject.Singleton
 
 @Module

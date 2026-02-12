@@ -1,6 +1,7 @@
-package edu.ucne.Eddian_Vasquez_Ap2_p1.domain.repository
+package edu.ucne.eddian_vasquez_ap2_p1.domain.repository
 
-import edu.ucne.Eddian_Vasquez_Ap2_P1.domain.Cerveza
+
+import edu.ucne.eddian_vasquez_ap2_p1.domain.registro.model.Cerveza
 import kotlinx.coroutines.flow.Flow
 
 interface CervezaRepository {

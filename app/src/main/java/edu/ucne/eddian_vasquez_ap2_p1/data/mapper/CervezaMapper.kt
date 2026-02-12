@@ -1,7 +1,7 @@
-package edu.ucne.Eddian_Vasquez_Ap2_P1.data.local.mapper
+package edu.ucne.eddian_vasquez_ap2_p1.data.local.mapper
 
-import edu.ucne.Eddian_Vasquez_Ap2_P1.data.local.entitiespackage.CervezaEntity
-import edu.ucne.Eddian_Vasquez_Ap2_P1.domain.Cerveza
+import edu.ucne.eddian_vasquez_ap2_p1.data.local.entitiespackage.CervezaEntity
+import edu.ucne.eddian_vasquez_ap2_p1.domain.registro.model.Cerveza
 
 
 fun CervezaEntity.toDomain() = Cerveza(

@@ -1,12 +1,11 @@
-package edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.navigation
+package edu.ucne.eddian_vasquez_ap2_p1.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.cerveza_edit.CervezaEditScreen
-import edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.cerveza_list.CervezaListScreen
-
+import edu.ucne.eddian_vasquez_ap2_p1.presentation.registro.edit.CervezaEditScreen
+import edu.ucne.eddian_vasquez_ap2_p1.presentation.registro.list.CervezaListScreen
 
 
 @Composable

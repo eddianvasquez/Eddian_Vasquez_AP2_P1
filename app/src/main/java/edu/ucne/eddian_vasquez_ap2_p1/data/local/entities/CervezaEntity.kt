@@ -1,4 +1,4 @@
-package edu.ucne.Eddian_Vasquez_Ap2_P1.data.local.entitiespackage
+package edu.ucne.eddian_vasquez_ap2_p1.data.local.entitiespackage
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

@@ -1,11 +1,10 @@
-package edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.cerveza_list
+package edu.ucne.eddian_vasquez_ap2_p1.presentation.cerveza_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.cerveza_list.CervezaListUiState
-import edu.ucne.Eddian_Vasquez_Ap2_p1.domain.usecase.cerveza.DeleteCervezaUseCase
-import edu.ucne.Eddian_Vasquez_Ap2_p1.domain.usecase.cerveza.ObserveCervezasUseCase
+import edu.ucne.eddian_vasquez_ap2_p1.domain.registro.usecase.DeleteCervezaUseCase
+import edu.ucne.eddian_vasquez_ap2_p1.domain.registro.usecase.ObserveCervezasUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject

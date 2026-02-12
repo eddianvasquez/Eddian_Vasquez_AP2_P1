@@ -1,4 +1,4 @@
-package edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.navigation
+package edu.ucne.eddian_vasquez_ap2_p1.presentation.navigation
 
 import kotlinx.serialization.Serializable
 
