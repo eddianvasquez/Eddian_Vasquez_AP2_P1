@@ -1,0 +1,11 @@
+package edu.ucne.Eddian_Vasquez_Ap2_p1.domain.repository
+
+import edu.ucne.Eddian_Vasquez_Ap2_P1.domain.Cerveza
+import kotlinx.coroutines.flow.Flow
+
+interface CervezaRepository {
+    suspend fun save(cerveza: Cerveza)
+    suspend fun delete(id: Int)
+    suspend fun getCerveza(id: Int): Cerveza?
+    fun getAll(): Flow<List<Cerveza>>
+}
