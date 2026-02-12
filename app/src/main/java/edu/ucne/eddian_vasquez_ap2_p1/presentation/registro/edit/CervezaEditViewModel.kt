@@ -8,13 +8,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
-import edu.ucne.Eddian_Vasquez_Ap2_P1.presentation.cerveza_edit.CervezaEditEvent
-import edu.ucne.Eddian_Vasquez_Ap2_p1.domain.usecase.cerveza.GetCervezaUseCase
-import edu.ucne.Eddian_Vasquez_Ap2_p1.domain.usecase.cerveza.SaveCervezaUseCase
-import edu.ucne.Eddian_Vasquez_Ap2_P1.domain.Cerveza
-import edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.navigation.Screen
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import edu.ucne.Eddian_Vasquez_Ap2_p1.domain.model.Cerveza
+import edu.ucne.Eddian_Vasquez_Ap2_p1.domain.usecase.cerveza.GetCervezaUseCase
+import edu.ucne.Eddian_Vasquez_Ap2_p1.domain.usecase.cerveza.SaveCervezaUseCase
+import edu.ucne.Eddian_Vasquez_Ap2_p1.presentation.navigation.Screen
 
 @HiltViewModel
 class CervezaEditViewModel @Inject constructor(
@@ -26,13 +25,15 @@ class CervezaEditViewModel @Inject constructor(
     var state by mutableStateOf(CervezaEditState())
         private set
 
-
     private val args = savedStateHandle.toRoute<Screen.CervezaEdit>()
 
     init {
+
         if (args.cervezaId != 0) {
+
             viewModelScope.launch {
-                getCerveza(args.cervezaId)?.let {
+                val cerveza = getCerveza(args.cervezaId)
+                cerveza?.let {
                     state = state.copy(
                         id = it.idCerveza,
                         nombre = it.nombre,
@@ -46,28 +47,43 @@ class CervezaEditViewModel @Inject constructor(
 
     fun onEvent(event: CervezaEditEvent) {
         when(event) {
-            is CervezaEditEvent.NombreChanged -> state = state.copy(nombre = event.v, errorMessage = null)
-            is CervezaEditEvent.MarcaChanged -> state = state.copy(marca = event.v, errorMessage = null)
-            is CervezaEditEvent.PuntuacionChanged -> state = state.copy(puntuacion = event.v, errorMessage = null)
-            CervezaEditEvent.Save -> save()
+            is CervezaEditEvent.NombreChanged -> {
+                state = state.copy(nombre = event.v, errorMessage = null)
+            }
+            is CervezaEditEvent.MarcaChanged -> {
+                state = state.copy(marca = event.v, errorMessage = null)
+            }
+            is CervezaEditEvent.PuntuacionChanged -> {
+                state = state.copy(puntuacion = event.v, errorMessage = null)
+            }
+            CervezaEditEvent.Save -> {
+                save()
+            }
         }
     }
 
     private fun save() {
         viewModelScope.launch {
             try {
+
                 val puntuacionInt = state.puntuacion.toIntOrNull() ?: 0
-                saveCerveza(
-                    Cerveza(
-                        idCerveza = state.id,
-                        nombre = state.nombre,
-                        marca = state.marca,
-                        puntuacion = puntuacionInt
-                    )
+
+                val cerveza = Cerveza(
+                    idCerveza = state.id,
+                    nombre = state.nombre,
+                    marca = state.marca,
+                    puntuacion = puntuacionInt
                 )
+
+
+                saveCerveza(cerveza)
+
+
                 state = state.copy(saved = true)
+
             } catch (e: Exception) {
-                state = state.copy(errorMessage = e.message)
+
+                state = state.copy(errorMessage = e.message ?: "Error desconocido")
             }
         }
     }
